@@ -4,4 +4,20 @@ body{
 
 h1{
     color: darkmagenta;
+    text-align: center;
+}
+
+h2{
+    color: darkmagenta;
+    text-align: center;
+}
+
+.Cookie{
+    margin: auto;
+    margin-left: 39%;
+}
+
+p{
+    color: darkmagenta;
+    text-align: center;
 }
