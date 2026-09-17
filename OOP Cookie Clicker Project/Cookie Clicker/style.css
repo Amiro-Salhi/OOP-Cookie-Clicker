@@ -26,3 +26,24 @@ img{
     cursor: pointer;
 
 }
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: blanchedalmond;
+  background-color: darkmagenta;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px gray;
+}
+
+.button:hover {background-color: purple}
+
+.button:active {
+  background-color: darkmagenta;
+  box-shadow: 0 5px gray;
+  transform: translateY(4px);
+}
