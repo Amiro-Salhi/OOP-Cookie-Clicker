@@ -7,23 +7,22 @@ h1{
     text-align: center;
 }
 
-<<<<<<< HEAD
-.Cookie{
-    margin: auto;
-    margin-left: 38%;
-=======
 h2{
     color: darkmagenta;
     text-align: center;
 }
 
 .Cookie{
-    margin: auto;
-    margin-left: 39%;
+    margin-left: 38%;
 }
 
 p{
     color: darkmagenta;
     text-align: center;
->>>>>>> origin/main
+}
+
+img{
+    width: 25%;
+    cursor: pointer;
+
 }
