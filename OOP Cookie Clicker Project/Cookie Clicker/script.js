@@ -13,6 +13,14 @@ let mines = 0;
 let mine_price = 150;
 let mine_production = 15;
 
+let factorys = 0;
+let factory_price = 350;
+let factory_production = 30;
+
+let temples = 0;
+let temple_price = 950;
+let temple_production = 90;
+
 
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
@@ -27,6 +35,12 @@ const farm_display = document.getElementById("farms");
 const buy_mine_button = document.getElementById("buy_mine");
 const mine_display = document.getElementById("mines");
 
+const buy_factory_button = document.getElementById("buy_factory");
+const factory_display = document.getElementById("factorys");
+
+const buy_temple_button = document.getElementById("buy_temple");
+const temple_display = document.getElementById("temples");
+
 
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + 1;
@@ -35,13 +49,15 @@ cookiebutton.addEventListener("click" , function() {
 );
 
 function CpS_update () {
-    CpS = grandma_production * grandmas + farm_production * farms + mine_production * mines;
+    CpS = grandma_production * grandmas + farm_production * farms + mine_production * mines + factory_production * factorys + temple_production * temples;
 };
 
 function production_cookies() {
     cookies = cookies + grandma_production * grandmas;
     cookies = cookies + farm_production * farms;
     cookies = cookies + mine_production * mines;
+    cookies = cookies + factory_production * factorys;
+    cookies = cookies + temple_production * temples;
     cookies_display.textContent = cookies + " " + "Cookies";
 }
 
@@ -99,6 +115,44 @@ buy_mine_button.addEventListener("click" , function() {
         cookies_display.textContent = cookies + " " + "Cookies";
 
         mine_display.textContent = "Mines:" + " " + mines;
+
+        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+    };
+
+});
+
+buy_factory_button.addEventListener("click" , function() {
+
+    if (cookies >= factory_price) {
+        
+        cookies = cookies - factory_price;
+
+        factorys = factorys + 1;
+
+        CpS_update()
+
+        cookies_display.textContent = cookies + " " + "Cookies";
+
+        factory_display.textContent = "Factorys:" + " " + factorys;
+
+        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+    };
+
+});
+
+buy_temple_button.addEventListener("click" , function() {
+
+    if (cookies >= temple_price) {
+        
+        cookies = cookies - temple_price;
+
+        temples = temples + 1;
+
+        CpS_update()
+
+        cookies_display.textContent = cookies + " " + "Cookies";
+
+        temple_display.textContent = "Temples:" + " " + temples;
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
