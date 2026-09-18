@@ -1,13 +1,92 @@
 let cookies = 0;
 let CpS = 0;
 
-let grandmas = 0;
-let grandma_price = 10;
-let grandma_production = 1;
+const cookiebutton = document.getElementById("cookie");
+const cookies_display = document.getElementById("cookies");
+const CpS_display = document.getElementById("CpS")
 
-let farms = 0;
-let farm_price = 50;
-let farm_production = 5;
+cookiebutton.addEventListener("click" , function() {
+        cookies = cookies + 1;
+        cookies_display.textContent = cookies + " " + "Cookies";
+    }
+);
+
+function CpS_update () {
+    CpS = 
+        + grandma.getProductionPerSecond()
+        + farm.getProductionPerSecond()
+        + mine.getProductionPerSecond();
+    ;
+};
+
+setInterval( function () {
+        cookies = 
+            cookies
+            + grandma.getProductionPerSecond()
+            + farm.getProductionPerSecond()
+            + mine.getProductionPerSecond();
+        cookies_display.textContent = cookies + " " + "Cookies";
+    }, 1000)
+
+
+class production_unit {
+    constructor(name, price, production, display_id, button_id) {
+        this.name = name;
+        this.price = price;
+        this.production = production;
+        this.amount = 0;
+
+        this.display = document.getElementById(display_id);
+        this.button = document.getElementById(button_id);
+
+        this.button.addEventListener("click" , () => {
+            this.buy();
+        });
+    }
+
+    buy() {
+        if (cookies >= this.price) {
+            cookies = cookies - this.price;
+            this.amount = this.amount + 1;
+
+            cookies_display.textContent = cookies + " " + "Cookies";
+            this.display.textContent = this.name + " " + this.amount;
+            
+            CpS_update ()
+            CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+        }
+    }
+
+    getProductionPerSecond() {
+        return this.amount * this.production
+    }
+}
+
+
+const grandma = new production_unit (
+    "Grandma's:",
+    10,
+    1,
+    "grandmas",
+    "buy_grandma"
+);
+
+const farm = new production_unit (
+    "Farms:",
+    50,
+    5,
+    "farms",
+    "buy_farm"
+)
+
+const mine = new production_unit (
+    "Mines:",
+    150,
+    15,
+    "mines",
+    "buy_mine"
+)
+
 
 let mines = 0;
 let mine_price = 150;
@@ -25,17 +104,6 @@ let temples = 0;
 let temple_price = 950;
 let temple_production = 90;
 
-
-const cookiebutton = document.getElementById("cookie");
-const cookies_display = document.getElementById("cookies");
-const CpS_display = document.getElementById("CpS")
-
-const buy_grandma_button = document.getElementById("buy_grandma");
-const grandma_display = document.getElementById("grandmas");
-
-const buy_farm_button = document.getElementById("buy_farm");
-const farm_display = document.getElementById("farms");
-
 const buy_mine_button = document.getElementById("buy_mine");
 const mine_display = document.getElementById("mines");
 
@@ -47,75 +115,6 @@ const bank_display = document.getElementById("banks");
 
 const buy_temple_button = document.getElementById("buy_temple");
 const temple_display = document.getElementById("temples");
-
-
-cookiebutton.addEventListener("click" , function() {
-        cookies = cookies + 1;
-        cookies_display.innerHTML = cookies + " " + "Cookies";
-    }
-);
-
-function CpS_update () {
-    CpS = 
-        grandma_production * grandmas
-        + farm_production * farms
-        + mine_production * mines
-        + factory_production * factorys
-        + bank_production * banks
-        + temple_production * temples
-    ;
-};
-
-function production_cookies() {
-    cookies = cookies + grandma_production * grandmas;
-    cookies = cookies + farm_production * farms;
-    cookies = cookies + mine_production * mines;
-    cookies = cookies + factory_production * factorys;
-    cookies = cookies + temple_production * temples;
-    cookies = cookies + bank_production * banks;
-    cookies_display.textContent = cookies + " " + "Cookies";
-}
-
-setInterval(production_cookies, 1000)
-
-
-buy_grandma_button.addEventListener("click" , function() {
-
-    if (cookies >= grandma_price) {
-        
-        cookies = cookies - grandma_price;
-
-        grandmas = grandmas + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        grandma_display.textContent = "Grandma's:" + " " + grandmas;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_farm_button.addEventListener("click" , function() {
-
-    if (cookies >= farm_price) {
-        
-        cookies = cookies - farm_price;
-
-        farms = farms + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        farm_display.textContent = "Farms:" + " " + farms;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
 
 buy_mine_button.addEventListener("click" , function() {
 
