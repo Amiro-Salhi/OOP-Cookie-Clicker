@@ -1,15 +1,10 @@
 let cookies = 0;
 let CpS = 0;
 
-let wizard_production = 125;
-let wizard_price = 1150;
-let wizards = 0;
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
 const CpS_display = document.getElementById("CpS")
 
-const wizzard_display = document.getElementById("wizards");
-const buy_wizard_button = document.getElementById("buy_wizard");
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + 1;
         cookies_display.textContent = cookies + " " + "Cookies";
@@ -31,7 +26,7 @@ setInterval( function () {
             + farm.getProductionPerSecond()
             + mine.getProductionPerSecond();
         cookies_display.textContent = cookies + " " + "Cookies";
-    }, 1000)
+}, 1000)
 
 
 class production_unit {
@@ -109,6 +104,10 @@ let temples = 0;
 let temple_price = 950;
 let temple_production = 90;
 
+let wizard_production = 125;
+let wizard_price = 1150;
+let wizards = 0;
+
 const buy_mine_button = document.getElementById("buy_mine");
 const mine_display = document.getElementById("mines");
 
@@ -121,8 +120,10 @@ const bank_display = document.getElementById("banks");
 const buy_temple_button = document.getElementById("buy_temple");
 const temple_display = document.getElementById("temples");
 
-buy_mine_button.addEventListener("click" , function() {
+const wizzard_display = document.getElementById("wizards");
+const buy_wizard_button = document.getElementById("buy_wizard");
 
+buy_mine_button.addEventListener("click" , function() {
     if (cookies >= mine_price) {
         
         cookies = cookies - mine_price;
@@ -137,11 +138,9 @@ buy_mine_button.addEventListener("click" , function() {
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
-
 });
 
 buy_factory_button.addEventListener("click" , function() {
-
     if (cookies >= factory_price) {
         
         cookies = cookies - factory_price;
@@ -156,11 +155,9 @@ buy_factory_button.addEventListener("click" , function() {
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
-
 });
 
 buy_bank_button.addEventListener("click" , function() {
-
     if (cookies >= bank_price) {
         
         cookies = cookies - bank_price;
@@ -175,11 +172,9 @@ buy_bank_button.addEventListener("click" , function() {
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
-
 });
 
 buy_temple_button.addEventListener("click" , function() {
-
     if (cookies >= temple_price) {
         
         cookies = cookies - temple_price;
@@ -194,11 +189,9 @@ buy_temple_button.addEventListener("click" , function() {
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
-
 });
 
 buy_wizard_button.addEventListener("click" , function() {
-
     if (cookies >= wizard_price) {
         
         cookies = cookies - wizard_price;
@@ -213,5 +206,4 @@ buy_wizard_button.addEventListener("click" , function() {
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
-
 }); 
