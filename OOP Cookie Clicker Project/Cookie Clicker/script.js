@@ -53,7 +53,7 @@ const buy_temple_button = document.getElementById("buy_temple");
 const temple_display = document.getElementById("temples");
 
 const buy_wizard_button = document.getElementById("buy_wizard");
-const wizzard_display = document.getElementById("wizards");
+const wizard_display = document.getElementById("wizards");
 
 
 
@@ -209,13 +209,13 @@ buy_wizard_button.addEventListener("click" , function() {
         
         cookies = cookies - wizard_price;
 
-        wizard = wizards + 1;
+        wizards = wizards + 1;
 
         CpS_update()
 
         cookies_display.textContent = cookies + " " + "Cookies";
 
-        temple_display.textContent = "wizards:" + " " + wizards;
+        wizard_display.textContent = "Wizard Towers:" + " " + wizards;
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
