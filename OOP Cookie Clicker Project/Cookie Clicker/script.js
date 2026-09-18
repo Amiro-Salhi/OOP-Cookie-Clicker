@@ -1,10 +1,15 @@
 let cookies = 0;
 let CpS = 0;
 
+let wizard_production = 125;
+let wizard_price = 1150;
+let wizards = 0;
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
 const CpS_display = document.getElementById("CpS")
 
+const wizzard_display = document.getElementById("wizards");
+const buy_wizard_button = document.getElementById("buy_wizard");
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + 1;
         cookies_display.textContent = cookies + " " + "Cookies";
@@ -191,3 +196,22 @@ buy_temple_button.addEventListener("click" , function() {
     };
 
 });
+
+buy_wizard_button.addEventListener("click" , function() {
+
+    if (cookies >= wizard_price) {
+        
+        cookies = cookies - wizard_price;
+
+        wizard = wizards + 1;
+
+        CpS_update()
+
+        cookies_display.textContent = cookies + " " + "Cookies";
+
+        temple_display.textContent = "wizards:" + " " + wizards;
+
+        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+    };
+
+}); 
