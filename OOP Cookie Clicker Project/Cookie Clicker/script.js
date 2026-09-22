@@ -26,8 +26,12 @@ let temple_price = 950;
 let temple_production = 90;
 
 let wizards = 0;
-let wizard_price = 1150;
+let wizard_price = 1250;
 let wizard_production = 125;
+
+let spaceships = 0;
+let spaceship_price = 1850;
+let spaceship_production = 350;
 
 
 const cookiebutton = document.getElementById("cookie");
@@ -55,6 +59,9 @@ const temple_display = document.getElementById("temples");
 const buy_wizard_button = document.getElementById("buy_wizard");
 const wizard_display = document.getElementById("wizards");
 
+const buy_spaceship_button = document.getElementById("buy_spaceship");
+const spaceship_display = document.getElementById("spaceships");
+
 
 
 cookiebutton.addEventListener("click" , function() {
@@ -65,13 +72,14 @@ cookiebutton.addEventListener("click" , function() {
 
 function CpS_update () {
     CpS = 
-        grandma_production * grandmas
+        + grandma_production * grandmas
         + farm_production * farms
         + mine_production * mines
         + factory_production * factorys
         + bank_production * banks
         + temple_production * temples
         + wizard_production * wizards
+        + spaceship_production * spaceships
     ;
 };
 
@@ -83,6 +91,7 @@ function production_cookies() {
     cookies = cookies + temple_production * temples;
     cookies = cookies + bank_production * banks;
     cookies = cookies + wizard_production * wizards;
+    cookies = cookies + spaceship_production * spaceships;
     cookies_display.textContent = cookies + " " + "Cookies";
 }
 
@@ -216,6 +225,25 @@ buy_wizard_button.addEventListener("click" , function() {
         cookies_display.textContent = cookies + " " + "Cookies";
 
         wizard_display.textContent = "Wizard Towers:" + " " + wizards;
+
+        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+    };
+
+}); 
+
+buy_spaceship_button.addEventListener("click" , function() {
+
+    if (cookies >= spaceship_price) {
+        
+        cookies = cookies - spaceship_price;
+
+        spaceships = spaceships + 1;
+
+        CpS_update()
+
+        cookies_display.textContent = cookies + " " + "Cookies";
+
+        spaceship_display.textContent = "Spaceships:" + " " + spaceships;
 
         CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
     };
