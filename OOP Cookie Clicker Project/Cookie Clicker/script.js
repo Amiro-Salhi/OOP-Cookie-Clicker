@@ -15,7 +15,11 @@ function CpS_update () {
     CpS = 
         + grandma.getProductionPerSecond()
         + farm.getProductionPerSecond()
-        + mine.getProductionPerSecond();
+        + mine.getProductionPerSecond()
+        + factory.getProductionPerSecond()
+        + bank.getProductionPerSecond()
+        + temple.getProductionPerSecond()
+        + wizard_tower.getProductionPerSecond()
     ;
 };
 
@@ -24,7 +28,11 @@ setInterval( function () {
             cookies
             + grandma.getProductionPerSecond()
             + farm.getProductionPerSecond()
-            + mine.getProductionPerSecond();
+            + mine.getProductionPerSecond()
+            + factory.getProductionPerSecond()
+            + bank.getProductionPerSecond()
+            + temple.getProductionPerSecond()
+            + wizard_tower.getProductionPerSecond()
         cookies_display.textContent = cookies + " " + "Cookies";
 }, 1000)
 
@@ -87,123 +95,34 @@ const mine = new production_unit (
     "buy_mine"
 )
 
+const factory = new production_unit (
+    "Factorys:",
+    350,
+    30,
+    "factorys",
+    "buy_factory"
+)
 
-let mines = 0;
-let mine_price = 150;
-let mine_production = 15;
+const bank = new production_unit (
+    "Banks:",
+    550,
+    55,
+    "banks",
+    "buy_bank"
+)
 
-let factorys = 0;
-let factory_price = 350;
-let factory_production = 30;
+const temple = new production_unit (
+    "Temples:",
+    950,
+    90,
+    "temples",
+    "buy_temple"
+)
 
-let banks = 0;
-let bank_price = 550;
-let bank_production = 55;
-
-let temples = 0;
-let temple_price = 950;
-let temple_production = 90;
-
-let wizard_production = 125;
-let wizard_price = 1150;
-let wizards = 0;
-
-const buy_mine_button = document.getElementById("buy_mine");
-const mine_display = document.getElementById("mines");
-
-const buy_factory_button = document.getElementById("buy_factory");
-const factory_display = document.getElementById("factorys");
-
-const buy_bank_button = document.getElementById("buy_bank");
-const bank_display = document.getElementById("banks");
-
-const buy_temple_button = document.getElementById("buy_temple");
-const temple_display = document.getElementById("temples");
-
-const wizzard_display = document.getElementById("wizards");
-const buy_wizard_button = document.getElementById("buy_wizard");
-
-buy_mine_button.addEventListener("click" , function() {
-    if (cookies >= mine_price) {
-        
-        cookies = cookies - mine_price;
-
-        mines = mines + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        mine_display.textContent = "Mines:" + " " + mines;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-});
-
-buy_factory_button.addEventListener("click" , function() {
-    if (cookies >= factory_price) {
-        
-        cookies = cookies - factory_price;
-
-        factorys = factorys + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        factory_display.textContent = "Factorys:" + " " + factorys;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-});
-
-buy_bank_button.addEventListener("click" , function() {
-    if (cookies >= bank_price) {
-        
-        cookies = cookies - bank_price;
-
-        banks = banks + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        bank_display.textContent = "Banks" + " " + banks;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-});
-
-buy_temple_button.addEventListener("click" , function() {
-    if (cookies >= temple_price) {
-        
-        cookies = cookies - temple_price;
-
-        temples = temples + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        temple_display.textContent = "Temples:" + " " + temples;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-});
-
-buy_wizard_button.addEventListener("click" , function() {
-    if (cookies >= wizard_price) {
-        
-        cookies = cookies - wizard_price;
-
-        wizard = wizards + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        temple_display.textContent = "wizards:" + " " + wizards;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-}); 
+const wizard_tower = new production_unit (
+    "wizard Towers:",
+    1150,
+    125,
+    "wizardtower",
+    "buy_wizard"
+)
