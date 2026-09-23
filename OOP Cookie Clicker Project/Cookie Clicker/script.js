@@ -26,12 +26,8 @@ let temple_price = 950;
 let temple_production = 90;
 
 let wizards = 0;
-let wizard_price = 1250;
+let wizard_price = 1150;
 let wizard_production = 125;
-
-let spaceships = 0;
-let spaceship_price = 1850;
-let spaceship_production = 350;
 
 
 const cookiebutton = document.getElementById("cookie");
@@ -57,195 +53,123 @@ const buy_temple_button = document.getElementById("buy_temple");
 const temple_display = document.getElementById("temples");
 
 const buy_wizard_button = document.getElementById("buy_wizard");
-const wizard_display = document.getElementById("wizards");
-
-const buy_spaceship_button = document.getElementById("buy_spaceship");
-const spaceship_display = document.getElementById("spaceships");
+const wizzard_display = document.getElementById("wizards");
 
 
 
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + 1;
-        cookies_display.innerHTML = cookies + " " + "Cookies";
+        cookies_display.textContent = cookies + " " + "Cookies";
     }
 );
-
 function CpS_update () {
     CpS = 
-        + grandma_production * grandmas
-        + farm_production * farms
-        + mine_production * mines
-        + factory_production * factorys
-        + bank_production * banks
-        + temple_production * temples
-        + wizard_production * wizards
-        + spaceship_production * spaceships
+        + grandma.getProductionPerSecond()
+        + farm.getProductionPerSecond()
+        + mine.getProductionPerSecond()
+        + factory.getProductionPerSecond()
+        + bank.getProductionPerSecond()
+        + temple.getProductionPerSecond()
+        + wizard_tower.getProductionPerSecond()
+        + spaceship.getProductionPerSecond()
     ;
 };
+setInterval( function () {
+        cookies = 
+            cookies
+            + grandma.getProductionPerSecond()
+            + farm.getProductionPerSecond()
+            + mine.getProductionPerSecond()
+            + factory.getProductionPerSecond()
+            + bank.getProductionPerSecond()
+            + temple.getProductionPerSecond()
+            + wizard_tower.getProductionPerSecond()
+            + spaceship.getProductionPerSecond()
+        cookies_display.textContent = cookies + " " + "Cookies";
+}, 1000)
+class production_unit {
+    constructor(name, price, production, display_id, button_id) {
+        this.name = name;
+        this.price = price;
+        this.production = production;
+        this.amount = 0;
 
-function production_cookies() {
-    cookies = cookies + grandma_production * grandmas;
-    cookies = cookies + farm_production * farms;
-    cookies = cookies + mine_production * mines;
-    cookies = cookies + factory_production * factorys;
-    cookies = cookies + temple_production * temples;
-    cookies = cookies + bank_production * banks;
-    cookies = cookies + wizard_production * wizards;
-    cookies = cookies + spaceship_production * spaceships;
-    cookies_display.textContent = cookies + " " + "Cookies";
+        this.display = document.getElementById(display_id);
+        this.button = document.getElementById(button_id);
+
+        this.button.addEventListener("click" , () => {
+            this.buy();
+        });
+    }
+    buy() {
+        if (cookies >= this.price) {
+            cookies = cookies - this.price;
+            this.amount = this.amount + 1;
+
+            cookies_display.textContent = cookies + " " + "Cookies";
+            this.display.textContent = this.name + " " + this.amount;
+            
+            CpS_update ()
+            CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
+        }
+    }
+    getProductionPerSecond() {
+        return this.amount * this.production
+    }
 }
-
-setInterval(production_cookies, 1000)
-
-
-buy_grandma_button.addEventListener("click" , function() {
-
-    if (cookies >= grandma_price) {
-        
-        cookies = cookies - grandma_price;
-
-        grandmas = grandmas + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        grandma_display.textContent = "Grandma's:" + " " + grandmas;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_farm_button.addEventListener("click" , function() {
-
-    if (cookies >= farm_price) {
-        
-        cookies = cookies - farm_price;
-
-        farms = farms + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        farm_display.textContent = "Farms:" + " " + farms;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_mine_button.addEventListener("click" , function() {
-
-    if (cookies >= mine_price) {
-        
-        cookies = cookies - mine_price;
-
-        mines = mines + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        mine_display.textContent = "Mines:" + " " + mines;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_factory_button.addEventListener("click" , function() {
-
-    if (cookies >= factory_price) {
-        
-        cookies = cookies - factory_price;
-
-        factorys = factorys + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        factory_display.textContent = "Factorys:" + " " + factorys;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_bank_button.addEventListener("click" , function() {
-
-    if (cookies >= bank_price) {
-        
-        cookies = cookies - bank_price;
-
-        banks = banks + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        bank_display.textContent = "Banks" + " " + banks;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_temple_button.addEventListener("click" , function() {
-
-    if (cookies >= temple_price) {
-        
-        cookies = cookies - temple_price;
-
-        temples = temples + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        temple_display.textContent = "Temples:" + " " + temples;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-});
-
-buy_wizard_button.addEventListener("click" , function() {
-
-    if (cookies >= wizard_price) {
-        
-        cookies = cookies - wizard_price;
-
-        wizards = wizards + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        wizard_display.textContent = "Wizard Towers:" + " " + wizards;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-}); 
-
-buy_spaceship_button.addEventListener("click" , function() {
-
-    if (cookies >= spaceship_price) {
-        
-        cookies = cookies - spaceship_price;
-
-        spaceships = spaceships + 1;
-
-        CpS_update()
-
-        cookies_display.textContent = cookies + " " + "Cookies";
-
-        spaceship_display.textContent = "Spaceships:" + " " + spaceships;
-
-        CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
-    };
-
-}); 
+const grandma = new production_unit (
+    "Grandma's:",
+    10,
+    1,
+    "grandmas",
+    "buy_grandma"
+);
+const farm = new production_unit (
+    "Farms:",
+    50,
+    5,
+    "farms",
+    "buy_farm"
+)
+const mine = new production_unit (
+    "Mines:",
+    150,
+    15,
+    "mines",
+    "buy_mine"
+)
+const factory = new production_unit (
+    "Factorys:",
+    350,
+    30,
+    "factorys",
+    "buy_factory"
+)
+const bank = new production_unit (
+    "Banks:",
+    550,
+    55,
+    "banks",
+    "buy_bank"
+)
+const temple = new production_unit (
+    "Temples:",
+    950,
+    90,
+    "temples",
+    "buy_temple"
+)
+const wizard_tower = new production_unit (
+    "wizard Towers:",
+    1150,
+    125,
+    "wizardtowers",
+    "buy_wizardtower"
+)
+const spaceship = new production_unit (
+    "Spaceships:",
+    1850,
+    350,
+    "spaceships",
+    "buy_spaceship"
+)
