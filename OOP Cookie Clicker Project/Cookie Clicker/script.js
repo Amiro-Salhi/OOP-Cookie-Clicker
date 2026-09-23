@@ -1,16 +1,13 @@
 let cookies = 0;
 let CpS = 0;
-
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
 const CpS_display = document.getElementById("CpS")
-
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + 1;
         cookies_display.textContent = cookies + " " + "Cookies";
     }
 );
-
 function CpS_update () {
     CpS = 
         + grandma.getProductionPerSecond()
@@ -20,9 +17,9 @@ function CpS_update () {
         + bank.getProductionPerSecond()
         + temple.getProductionPerSecond()
         + wizard_tower.getProductionPerSecond()
+        + spaceship.getProductionPerSecond()
     ;
 };
-
 setInterval( function () {
         cookies = 
             cookies
@@ -33,10 +30,9 @@ setInterval( function () {
             + bank.getProductionPerSecond()
             + temple.getProductionPerSecond()
             + wizard_tower.getProductionPerSecond()
+            + spaceship.getProductionPerSecond()
         cookies_display.textContent = cookies + " " + "Cookies";
 }, 1000)
-
-
 class production_unit {
     constructor(name, price, production, display_id, button_id) {
         this.name = name;
@@ -51,7 +47,6 @@ class production_unit {
             this.buy();
         });
     }
-
     buy() {
         if (cookies >= this.price) {
             cookies = cookies - this.price;
@@ -64,13 +59,10 @@ class production_unit {
             CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
         }
     }
-
     getProductionPerSecond() {
         return this.amount * this.production
     }
 }
-
-
 const grandma = new production_unit (
     "Grandma's:",
     10,
@@ -78,7 +70,6 @@ const grandma = new production_unit (
     "grandmas",
     "buy_grandma"
 );
-
 const farm = new production_unit (
     "Farms:",
     50,
@@ -86,7 +77,6 @@ const farm = new production_unit (
     "farms",
     "buy_farm"
 )
-
 const mine = new production_unit (
     "Mines:",
     150,
@@ -94,7 +84,6 @@ const mine = new production_unit (
     "mines",
     "buy_mine"
 )
-
 const factory = new production_unit (
     "Factorys:",
     350,
@@ -102,7 +91,6 @@ const factory = new production_unit (
     "factorys",
     "buy_factory"
 )
-
 const bank = new production_unit (
     "Banks:",
     550,
@@ -110,7 +98,6 @@ const bank = new production_unit (
     "banks",
     "buy_bank"
 )
-
 const temple = new production_unit (
     "Temples:",
     950,
@@ -118,11 +105,17 @@ const temple = new production_unit (
     "temples",
     "buy_temple"
 )
-
 const wizard_tower = new production_unit (
     "wizard Towers:",
     1150,
     125,
-    "wizardtower",
-    "buy_wizard"
+    "wizardtowers",
+    "buy_wizardtower"
+)
+const spaceship = new production_unit (
+    "Spaceships:",
+    1850,
+    350,
+    "spaceships",
+    "buy_spaceship"
 )
