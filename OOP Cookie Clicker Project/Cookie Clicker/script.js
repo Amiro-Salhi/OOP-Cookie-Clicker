@@ -109,12 +109,42 @@ class production_unit {
             cookies_display.textContent = cookies + " " + "Cookies";
             this.display.textContent = this.name + " " + this.amount;
             
-            CpS_update ()
+            CpS_update()
             CpS_display.textContent = "Cookies Per Second:" + " " + CpS;
         }
     }
     getProductionPerSecond() {
-        return this.amount * this.production
+        return this.amount * this.production;
+    }
+}
+class base_upgrade {
+    constructor(name, price, multiplier,display_id , button_id) {
+        this.name = name;
+        this.price = price;
+        this.multiplier = multiplier;
+        this.amount = 0;
+
+        this.display = document.getElementById(display_id);
+        this.button = document.getElementById(button_id);
+
+        this.button.addEventListener("click" , () => {
+            this.buy();
+        });
+    }
+    buy() {
+        if (cookies >= this.price) {
+            cookies = cookies - this.price;
+            this.amount = this.amount + 1;
+
+            cookies_display.textContent = cookies + " " + "Cookies";
+            this.display.textContent = this.name + " " + this.amount;
+
+            CpS_update()
+            CpS_display.textContent = "Cookies Per Second" + " " + CpS;
+        }
+    }
+    getMultplier() {
+        return this.amount * this.multiplier;
     }
 }
 const grandma = new production_unit (
@@ -139,7 +169,7 @@ const mine = new production_unit (
     "buy_mine"
 )
 const factory = new production_unit (
-    "Factorys:",
+    "Factory's:",
     350,
     30,
     "factorys",
@@ -160,7 +190,7 @@ const temple = new production_unit (
     "buy_temple"
 )
 const wizard_tower = new production_unit (
-    "wizard Towers:",
+    "Wizard Towers:",
     1150,
     125,
     "wizardtowers",
