@@ -7,7 +7,12 @@ h1{
     text-align: center;
 }
 
-h2{
+.Subtitle{
+    color: darkmagenta;
+    text-align: center;
+}
+
+.cookie{
     color: darkmagenta;
     text-align: center;
 }
@@ -16,15 +21,27 @@ h2{
     margin-left: 38%;
 }
 
-p{
+.stats{
     color: darkmagenta;
     text-align: center;
+}
+
+.prod{
+    color: darkmagenta;
+    margin-left: 85%;
+}
+
+.upgrades{
+    color: darkmagenta;
+}
+
+.Wat{
+    margin-bottom: 40%;
 }
 
 img{
     width: 25%;
     cursor: pointer;
-
 }
 
 .container {
