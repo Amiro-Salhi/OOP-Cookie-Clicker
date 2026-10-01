@@ -4,44 +4,58 @@ body{
 
 h1{
     color: darkmagenta;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .Subtitle{
     color: darkmagenta;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .cookie{
     color: darkmagenta;
-    text-align: center;
+    /* text-align: center; */
 }
 
-.Cookie{
-    margin-left: 38%;
+#shop_container{
+    display: flex;
+    justify-content: space-between;
 }
 
 .stats{
     color: darkmagenta;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .prod{
     color: darkmagenta;
-    margin-left: 85%;
+    /* margin-left: 85%; */
+}
+
+.Wat{
+    display: flex;
+    justify-content: space-between;
+}
+
+#cookiecontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .upgrades{
     color: darkmagenta;
 }
 
-.Wat{
-    margin-bottom: 40%;
-}
 
 img{
     width: 25%;
     cursor: pointer;
+    /* margin-right: 39%; */
+}
+
+#cookie_click{
+    width: 75%;
 }
 
 .container {
@@ -50,7 +64,6 @@ img{
     flex-wrap: wrap;
     align-items: center;
     max-width: 40%;
-    margin: 0 auto;
     .button {
         margin: 1%;
     }
