@@ -54,7 +54,7 @@ img{
     /* margin-right: 39%; */
 }
 
-#cookie_click{
+#cookie{
     width: 75%;
 }
 
@@ -82,9 +82,20 @@ img{
   box-shadow: 0 9px gray;
 }
 
-.button:hover {background-color: purple}
+.button:disabled {
+    background-color: rgb(166, 118, 166);
+    cursor: default;
+}
 
-.button:active {
+.button:disabled:hover {
+    background-color: rgb(166, 118, 166);
+}
+
+.button:hover {
+    background-color: purple
+}
+
+.button:enabled:active {
   background-color: darkmagenta;
   box-shadow: 0 5px gray;
   transform: translateY(4px);
