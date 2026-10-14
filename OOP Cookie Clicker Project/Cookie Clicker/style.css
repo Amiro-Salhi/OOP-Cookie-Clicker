@@ -4,7 +4,6 @@ body{
 
 h1{
     color: darkmagenta;
-    /* text-align: center; */
 }
 
 .Subtitle{
@@ -80,6 +79,7 @@ img{
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px gray;
+  width: 335px;
 }
 
 .button:disabled {

@@ -4,7 +4,7 @@ let click_multiplier = 1;
 
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
-const CpS_display = document.getElementById("CpS")
+const CpS_display = document.getElementById("CpS");
 
 cookiebutton.addEventListener("click" , function() {
         cookies = cookies + click_multiplier;
@@ -47,10 +47,11 @@ class production_unit {
         this.display = document.getElementById(display_id);
         this.button = document.getElementById(button_id);
 
-        this.button.addEventListener("click" , () => {
+        this.button.addEventListener("click", () => {
             this.buy();
         });
     }
+
     buy() {
         if (cookies >= this.price) {
             cookies = cookies - this.price;
@@ -63,6 +64,7 @@ class production_unit {
             CpS_display.textContent = CpS;
         }
     }
+
     getProductionPerSecond() {
         return (this.amount * this.production * this.multiplier);
     }
