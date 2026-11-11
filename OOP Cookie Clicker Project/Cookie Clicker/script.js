@@ -105,6 +105,21 @@ class production_unit {
         }
     }
 
+    buy() {
+        if (cookies >= this.price) {
+            cookies = cookies - this.price;
+            this.amount = this.amount + 1;
+
+            cookies_display.textContent = cookies + " " + "Cookies";
+            if (this.display) this.display.textContent = this.amount;
+            
+            CpS_update();
+            if (CpS_display) CpS_display.textContent = CpS;
+
+            triggerPurchaseEffect(this.button);
+        }
+    }
+
     getProductionPerSecond() {
         return (this.amount * this.production * this.multiplier * total_multiplier * this.incoming_multiplier);
     }
@@ -136,6 +151,23 @@ class upgrade {
         }
         return false;
     }
+
+    buy() {
+        if (cookies >= this.price && this.bought === false) {
+            cookies = cookies - this.price;
+            this.bought = true;
+
+            cookies_display.textContent = cookies + " " + "Cookies";
+            if (this.button) this.button.disabled = true;
+
+            // --- VISUEEL EFFECT TOEVOEGEN ---
+            triggerPurchaseEffect(this.button);
+
+            return true;
+        }
+        return false;
+    }
+
 }
 
 class productionUpgrade extends upgrade {
@@ -243,6 +275,8 @@ class clickUpgrade extends upgrade {
     }
 }
 
+
+
 const grandma = new production_unit ("grandma", 10, 1, "grandmas", "buy_grandma");
 const farm = new production_unit ("farm", 50, 5, "farms", "buy_farm");
 const mine = new production_unit ("mine", 150, 15, "mines", "buy_mine");
@@ -260,6 +294,7 @@ const bank_upgrade = new productionUpgrade(5500, "buy_upgrade_bank", bank, 5);
 const temple_upgrade = new productionUpgrade(9500, "buy_upgrade_temple", temple, 5);
 const wizardtower_upgrade = new productionUpgrade(11500, "buy_upgrade_wizardtower", wizard_tower, 5);
 const spaceship_upgrade = new productionUpgrade(18500, "buy_upgrade_spaceship", spaceship, 5);
+<<<<<<< Updated upstream
 const click_upgrade = new clickUpgrade(50, "buy_click_upgrade", "click_multiplier", 5);
 
 const peanutCookies = new cookieTypes(150, "buy_peanut_cookies", "peanut_cookies",5);
@@ -277,3 +312,116 @@ const factory_to_bank = new multiplierUpgrade (1150, "buy_f_t_b", "f_t_b", "f_t_
 const factory_to_temple = new multiplierUpgrade (1425, "buy_f_t_t", "f_t_t", "f_t_t_text", factory, temple, 0.25);
 const temple_to_wizard_tower = new multiplierUpgrade (1725, "buy_t_t_wt", "t_t_wt", "t_t_wt_text", temple, wizard_tower, 0.25);
 const bank_to_spaceship = new multiplierUpgrade (2775, "buy_b_t_s", "b_t_s", "b_t_s_text", bank, spaceship, 0.25);
+=======
+
+const cookieContainer = document.getElementById("cookiecontainer");
+
+cookiebutton.addEventListener("click", function(event) {
+
+    cookiebutton.classList.add("clicked");
+    setTimeout(() => {
+        cookiebutton.classList.remove("clicked");
+    }, 100);
+
+    spawnFloatingText(event.clientX, event.clientY, click_multiplier);
+});
+
+function spawnFloatingText(x, y, amount) {
+    const text = document.createElement("div");
+    text.className = "floating-text";
+    text.textContent = "+" + amount;
+    
+    const rect = cookieContainer.getBoundingClientRect();
+    text.style.left = `${x - rect.left}px`;
+    text.style.top = `${y - rect.top}px`;
+    
+    cookieContainer.appendChild(text);
+    
+    setTimeout(() => {
+        text.remove();
+    }, 800);
+}
+
+function triggerPurchaseEffect(buttonElement, price) {
+    if (!buttonElement) return;
+    
+    buttonElement.classList.add("purchase-success");
+    setTimeout(() => {
+        buttonElement.classList.remove("purchase-success");
+    }, 300);
+
+    const popup = document.createElement("div");
+    popup.className = "purchase-popup";
+    
+    if (price !== undefined) {
+        popup.textContent = `-${price} 🍪`;
+    } else {
+        popup.textContent = `Gekocht! 🎉`;
+    }
+
+    const rect = buttonElement.getBoundingClientRect();
+    
+    popup.style.left = `${rect.left + rect.width / 2 - 30}px`;
+    popup.style.top = `${rect.top}px`;
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.remove();
+    }, 700);
+}
+
+function spawnCookieParticles(x, y) {
+
+    for (let i = 0; i < 4; i++) {
+        const particle = document.createElement("div");
+        particle.className = "cookie-particle";
+        
+        const rect = cookieContainer.getBoundingClientRect();
+        particle.style.left = `${x - rect.left - 15}px`;
+        particle.style.top = `${y - rect.top - 15}px`;
+        
+        const randomX = (Math.random() - 0.5) * 160;
+        const randomY = Math.random() * 100 + 40;
+        
+        particle.style.setProperty('--end-x', `${randomX}px`);
+        particle.style.setProperty('--end-y', `${randomY}px`);
+        
+        cookieContainer.appendChild(particle);
+        
+
+        setTimeout(() => {
+            particle.remove();
+        }, 700);
+    }
+}
+
+function spawnFallingMiniCookie(x, y) {
+    const miniCookie = document.createElement("div");
+    miniCookie.className = "falling-cookie";
+    
+    const rect = cookieContainer.getBoundingClientRect();
+    miniCookie.style.left = `${x - rect.left}px`;
+    miniCookie.style.top = `${y - rect.top}px`;
+    
+    cookieContainer.appendChild(miniCookie);
+    
+    setTimeout(() => {
+        miniCookie.remove();
+    }, 500);
+}
+
+cookiebutton.addEventListener("click", function(event) {
+    cookies = cookies + click_multiplier;
+    cookies_display.textContent = cookies + " " + "Cookies";
+
+    cookiebutton.classList.add("clicked");
+    setTimeout(() => {
+        cookiebutton.classList.remove("clicked");
+    }, 100);
+
+    spawnFloatingText(event.clientX, event.clientY, click_multiplier);
+
+    spawnFallingMiniCookie(event.clientX, event.clientY);
+});
+>>>>>>> Stashed changes

@@ -284,3 +284,114 @@ img {
   box-shadow: 0 3px gray;
   transform: translateY(3px);
 }
+
+#cookie {
+    transition: transform 0.1s ease;
+}
+
+#cookie.clicked {
+    transform: scale(0.9);
+}
+
+.floating-text {
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: darkmagenta;
+    text-shadow: 1px 1px 2px blanchedalmond;
+    pointer-events: none;
+    animation: floatUp 0.8s ease-out forwards;
+    z-index: 500;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.3);
+    }
+}
+
+.button.purchase-success {
+    animation: purchasePulse 0.3s ease;
+}
+
+@keyframes purchasePulse {
+    0% {
+        transform: scale(1);
+        background-color: darkmagenta;
+    }
+    50% {
+        transform: scale(1.05);
+        background-color: #b51ab5;
+    }
+    100% {
+        transform: scale(1);
+        background-color: darkmagenta;
+    }
+}
+
+.button.purchase-success {
+    animation: purchasePulse 0.3s ease;
+}
+
+@keyframes purchasePulse {
+    0% { transform: scale(1); background-color: darkmagenta; }
+    50% { transform: scale(1.05); background-color: #b51ab5; }
+    100% { transform: scale(1); background-color: darkmagenta; }
+}
+
+
+.purchase-popup {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    color: darkmagenta;
+    background-color: blanchedalmond;
+    padding: 4px 10px;
+    border-radius: 10px;
+    border: 2px solid darkmagenta;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    animation: popupFloat 0.7s ease-out forwards;
+    z-index: 2000; 
+}
+
+@keyframes popupFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.8);
+    }
+    50% {
+        transform: translateY(-25px) scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1);
+    }
+}
+
+.falling-cookie {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url('../images/cookie(2).png');
+    background-size: cover;
+    pointer-events: none;
+    animation: cookieFall 0.5s ease-out forwards;
+    z-index: 5;
+}
+
+@keyframes cookieFall {
+    0% {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 45px) scale(0.3);
+        opacity: 0;
+    }
+}
