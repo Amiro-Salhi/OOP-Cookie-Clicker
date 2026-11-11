@@ -11,6 +11,14 @@ h1{
     /* text-align: center; */
 }
 
+.upgrades p:not(.click_multiplier) {
+    display: none;
+}
+
+.cookie_types p{
+    display: none;
+}
+
 .cookie{
     color: darkmagenta;
     /* text-align: center; */
@@ -46,6 +54,9 @@ h1{
     color: darkmagenta;
 }
 
+.cookie_types {
+    color: darkmagenta;
+}
 
 img{
     width: 25%;

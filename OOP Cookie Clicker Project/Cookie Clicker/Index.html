@@ -11,20 +11,37 @@
 
 <div class="Wat">
     <div class="upgrades">
-        <h2>🍪 Upgrades:</h2>
-        <p>👴 Grandpa's: 0x</p>
-        <p>👨‍🌾 Farmers: 0x</p>
-        <p>💎 Minecarts: 0x</p>
-        <p>👷🏻 Operators: 0x</p>
-        <p>💰 Vaults: 0x</p>
-        <p>🪙 gold: 0x</p>
-        <p>🧙‍♂️ Wizards: 0x</p>
-        <p>👽 Aliens: 0x</p>
+        <h2>🍪 Bought Upgrades:</h2>
+        <p class="click_multiplier">🖱️ Click Multiplier: <span id="click_multiplier">1</span>x</p>
+        <p id="grandpas">👴 Grandpa's</p>
+        <p id="farmers">👨‍🌾 Farmers</p>
+        <p id="minecarts">💎 Minecarts</p>
+        <p id="operators">👷🏻 Operators</p>
+        <p id="vaults">💰 Vaults</p>
+        <p id="gold">🪙 Gold</p>
+        <p id="wizards">🧙‍♂️ Wizards</p>
+        <p id="aliens">👽 Aliens</p>
+        <p id="g_t_f_text">Cookies For Planting: <span id="g_t_f">1</span>x</p>
+        <p id="f_t_f_text">Cookies For Production: <span id="f_t_f">1</span>x</p>
+        <p id="f_t_b_text">Cookies For The Bank: <span id="f_t_b">1</span>x</p>
+        <p id="f_t_t_text">Cookies For The Ritual: <span id="f_t_t">1</span>x</p>
+        <p id="t_t_wt_text">Ritual Cookies For Magic: <span id="t_t_wt">1</span>x</p>
+        <p id="b_t_s_text">Cookies For Rocket Fuel: <span id="b_t_s">1</span>x</p>
+        <h2>🍪 Cookie Types</h2>
+        <h3>Total Multiplier: <span id="total_multiplier">1</span>x</h3>
+        <p id="peanut_cookies">Peanut Cookies</p>
+        <p id="almond_cookies">Almond Cookies</p>
+        <p id="macadamia_cookies">Macadamia Cookies</p>
+        <p id="pecan_cookies">Pecan Cookies</p>
+        <p id="cashew_cookies">Cashew Cookies</p>
+        <p id="walnut_cookies">Walnut Cookies</p>
+        <p id="double_cookies">Double Chocolate Cookies</p>
+        <p id="white_cookies">White Chocolate Cookies</p>
     </div>
 
     <div id="cookiecontainer">
         <h1>🍪 Cookie Clicker</h1>
-        <h2 id="cookies" class="cookie">0 Cookies</h2>
+        <h2 class="cookie"><span id="cookies">0</span> Cookies</h2>
         <p class="stats">🍪 Cookies Per Second: <span id="CpS">0</span></p>
         <img src="../images/cookie(2).png" alt="Knop tekst" class="Cookie" id="cookie">
     </div>
@@ -62,18 +79,19 @@
 
     <div class="container">
         <h2 class="Subtitle">🍪 Themes:</h2>
-        <button class="button" id="buy_upgrade_grandma">Hollow Knight Theme ⚔️</button>
-        <button class="button" id="buy_upgrade_farm">Upgrade Farmers 👨‍🌾</button>
-        <button class="button" id="buy_upgrade_mine">Upgrade Minecarts 💎</button>
-        <button class="button" id="buy_upgrade_factory">Upgrade Operators 👷🏻</button>
-        <button class="button" id="buy_upgrade_bank">Upgrade Vaults 💰</button>
-        <button class="button" id="buy_upgrade_temple">Upgrade Gold 🪙</button>
-        <button class="button" id="buy_upgrade_wizardtower">Upgrade Wizards 🧙‍♂️</button>
-        <button class="button" id="buy_upgrade_spaceship">Upgrade Aliens 👽</button>
+        <button class="button">Hollow Knight Theme ⚔️</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
+        <button class="button">place holder</button>
     </div>
 
     <div class="container">
         <h2 class="Subtitle">🍪 Upgrades:</h2>
+        <button class="button" id="buy_click_upgrade">Buy Click Upgrade</button>
         <button class="button" id="buy_upgrade_grandma">Upgrade Grandpa's 👴</button>
         <button class="button" id="buy_upgrade_farm">Upgrade Farmers 👨‍🌾</button>
         <button class="button" id="buy_upgrade_mine">Upgrade Minecarts 💎</button>
@@ -82,6 +100,26 @@
         <button class="button" id="buy_upgrade_temple">Upgrade Gold 🪙</button>
         <button class="button" id="buy_upgrade_wizardtower">Upgrade Wizards 🧙‍♂️</button>
         <button class="button" id="buy_upgrade_spaceship">Upgrade Aliens 👽</button>
+    </div>
+    <div class="container">
+        <h2 class="Subtitle">🍪 Cookie Upgrades:</h2>
+        <button class="button" id="buy_peanut_cookies">Buy Peanut Cookies</button>
+        <button class="button" id="buy_almond_cookies">Buy Almond Cookies</button>
+        <button class="button" id="buy_macadamia_cookies">Buy Macadamia Cookies</button>
+        <button class="button" id="buy_pecan_cookies">Buy Pecan Cookies</button>
+        <button class="button" id="buy_cashew_cookies">Buy Cashew Cookies</button>
+        <button class="button" id="buy_walnut_cookies">Buy Walnut Cookies</button>
+        <button class="button" id="buy_double_cookies">Buy Double Chocolate Cookies</button>
+        <button class="button" id="buy_white_cookies">Buy White Chocolate Cookies</button>
+    </div>
+    <div class="container">
+        <h2 class="Subtitle">🍪 Multiplier Upgrades:</h2>
+        <button class="button" id="buy_g_t_f">Buy Grandma To Farm Multiplier</button>
+        <button class="button" id="buy_f_t_f">Buy Farm To Factory Multiplier</button>
+        <button class="button" id="buy_f_t_b">Buy Factory To Bank Multiplier</button>
+        <button class="button" id="buy_f_t_t">Buy Factory To Temple Multiplier</button>
+        <button class="button" id="buy_t_t_wt">Buy Temple To Wizard Tower Multiplier</button>
+        <button class="button" id="buy_b_t_s">Buy Bank To Spaceship Multiplier</button>
     </div>
 </div>
 
