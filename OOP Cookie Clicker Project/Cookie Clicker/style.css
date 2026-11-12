@@ -8,7 +8,6 @@ h1{
 
 .Subtitle{
     color: darkmagenta;
-    /* text-align: center; */
 }
 
 .upgrades p:not(.click_multiplier) {
@@ -21,7 +20,6 @@ h1{
 
 .cookie{
     color: darkmagenta;
-    /* text-align: center; */
 }
 
 #shop_container{
@@ -31,7 +29,6 @@ h1{
 
 .stats{
     color: darkmagenta;
-    /* text-align: center; */
 }
 
 .prod{
@@ -61,7 +58,6 @@ h1{
 img{
     width: 25%;
     cursor: pointer;
-    /* margin-right: 39%; */
 }
 
 #cookie{
@@ -289,6 +285,7 @@ img {
     transition: transform 0.1s ease;
 }
 
+
 #cookie.clicked {
     transform: scale(0.9);
 }
@@ -394,4 +391,26 @@ img {
         transform: translate(-50%, 45px) scale(0.3);
         opacity: 0;
     }
+}
+
+#cookie {
+    width: 79%;
+    height:79%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+body.hollow-knight #cookie {
+    width: 35%;
+}
+
+
+body.hollow-knight {
+    background-color: #0b0f19; 
+    color: #c7d5e0;            
+}
+
+body.hollow-knight #shop_container {
+    background-color: #0b0f19;
+    color: #c7d5e0;
 }
