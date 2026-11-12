@@ -19,18 +19,20 @@ let cookies = 0;
 let CpS = 0;
 let click_multiplier = 1;
 let total_multiplier = 1;
+let toppings_multiplier = 1;
 
 const cookiebutton = document.getElementById("cookie");
 const cookies_display = document.getElementById("cookies");
 const multiplier_display = document.getElementById("total_multiplier")
+const toppings_display = document.getElementById("toppings_multiplier")
 const CpS_display = document.getElementById("CpS");
 
 
 cookiebutton.addEventListener("click" , function() {
-        cookies = cookies + click_multiplier * total_multiplier;
+        cookies = cookies + click_multiplier * total_multiplier + toppings_multiplier;
         cookies_display.textContent = cookies;
     }
-);
+)
 function CpS_update() {
     CpS = 
         grandma.getProductionPerSecond()
@@ -98,30 +100,17 @@ class production_unit {
             cookies_display.textContent = cookies;
             this.display.textContent = this.amount;
             
-            CpS_update()
+            CpS_update();
             CpS_display.textContent = CpS;
 
             r_i_m(this)
-        }
-    }
-
-    buy() {
-        if (cookies >= this.price) {
-            cookies = cookies - this.price;
-            this.amount = this.amount + 1;
-
-            cookies_display.textContent = cookies + " " + "Cookies";
-            if (this.display) this.display.textContent = this.amount;
-            
-            CpS_update();
-            if (CpS_display) CpS_display.textContent = CpS;
 
             triggerPurchaseEffect(this.button);
         }
     }
 
     getProductionPerSecond() {
-        return (this.amount * this.production * this.multiplier * total_multiplier * this.incoming_multiplier);
+        return (this.amount * this.production * this.multiplier * total_multiplier * toppings_multiplier * this.incoming_multiplier);
     }
 }
 
@@ -135,8 +124,6 @@ class upgrade {
             this.button.addEventListener("click", () => {
                 this.buy();
             });
-        } else {
-            console.error(`Knop met ID "${button_id}" niet gevonden in de HTML!`);
         }
     }
     
@@ -146,21 +133,8 @@ class upgrade {
             this.bought = true;
 
             cookies_display.textContent = cookies;
+            this.button.disabled = true;
 
-            return true;
-        }
-        return false;
-    }
-
-    buy() {
-        if (cookies >= this.price && this.bought === false) {
-            cookies = cookies - this.price;
-            this.bought = true;
-
-            cookies_display.textContent = cookies + " " + "Cookies";
-            if (this.button) this.button.disabled = true;
-
-            // --- VISUEEL EFFECT TOEVOEGEN ---
             triggerPurchaseEffect(this.button);
 
             return true;
@@ -251,6 +225,31 @@ class multiplierUpgrade extends upgrade {
         CpS_display.textContent = CpS;
     }
 }
+class cookieToppings extends upgrade {
+    constructor(price, button_id, display_id, multiplier) {
+        super(
+            price,
+            button_id
+        );
+        this.multiplier = multiplier;
+        this.display = document.getElementById(display_id);
+    }
+    buy() {
+        const succeeded = super.buy();
+        if (succeeded) {
+            if (toppings_multiplier === 1) {
+                toppings_multiplier = 0;
+            }
+            toppings_multiplier = this.multiplier;
+
+            CpS_update()
+            CpS_display.textContent = CpS;
+            this.display.style.display = "block";
+            this.button.style.display = "none";
+            toppings_display.textContent = toppings_multiplier;
+        }
+    }
+}
 class clickUpgrade extends upgrade {
     constructor(price, button_id, display_id, multiplier) {
         super(
@@ -275,8 +274,6 @@ class clickUpgrade extends upgrade {
     }
 }
 
-
-
 const grandma = new production_unit ("grandma", 10, 1, "grandmas", "buy_grandma");
 const farm = new production_unit ("farm", 50, 5, "farms", "buy_farm");
 const mine = new production_unit ("mine", 150, 15, "mines", "buy_mine");
@@ -294,7 +291,6 @@ const bank_upgrade = new productionUpgrade(5500, "buy_upgrade_bank", bank, 5);
 const temple_upgrade = new productionUpgrade(9500, "buy_upgrade_temple", temple, 5);
 const wizardtower_upgrade = new productionUpgrade(11500, "buy_upgrade_wizardtower", wizard_tower, 5);
 const spaceship_upgrade = new productionUpgrade(18500, "buy_upgrade_spaceship", spaceship, 5);
-<<<<<<< Updated upstream
 const click_upgrade = new clickUpgrade(50, "buy_click_upgrade", "click_multiplier", 5);
 
 const peanutCookies = new cookieTypes(150, "buy_peanut_cookies", "peanut_cookies",5);
@@ -306,13 +302,18 @@ const walnutCookies = new cookieTypes(9497, "buy_walnut_cookies", "walnut_cookie
 const doubleCookies = new cookieTypes(10475, "buy_double_cookies", "double_cookies",5);
 const whiteCookies = new cookieTypes(15650, "buy_white_cookies", "white_cookies",5);
 
+const strawberryTopping = new cookieToppings(98, "buy_s_t", "strawberry_topping", 15)
+const whippedCreamTopping = new cookieToppings(24840, "buy_w_c_t", "whipped_cream_topping", 35)
+const chocolateFlakesTopping = new cookieToppings(64670, "buy_c_f_t", "chocolate_flakes_topping", 75)
+const rainbowSprinklesTopping = new cookieToppings(132940, "buy_rw_s_t", "rainbow_sprinkles_topping", 155)
+const radiantSprinklesTopping = new cookieToppings(234800, "buy_r_s_t", "radiant_sprinkles_topping", 315)
+
 const grandma_to_farm = new multiplierUpgrade (550, "buy_g_t_f", "g_t_f", "g_t_f_text", grandma, farm, 0.25);
 const farm_to_factory = new multiplierUpgrade (750, "buy_f_t_f", "f_t_f", "f_t_f_text", farm, factory, 0.25);
 const factory_to_bank = new multiplierUpgrade (1150, "buy_f_t_b", "f_t_b", "f_t_b_text", factory, bank, 0.25);
 const factory_to_temple = new multiplierUpgrade (1425, "buy_f_t_t", "f_t_t", "f_t_t_text", factory, temple, 0.25);
 const temple_to_wizard_tower = new multiplierUpgrade (1725, "buy_t_t_wt", "t_t_wt", "t_t_wt_text", temple, wizard_tower, 0.25);
 const bank_to_spaceship = new multiplierUpgrade (2775, "buy_b_t_s", "b_t_s", "b_t_s_text", bank, spaceship, 0.25);
-=======
 
 const cookieContainer = document.getElementById("cookiecontainer");
 
@@ -412,9 +413,6 @@ function spawnFallingMiniCookie(x, y) {
 }
 
 cookiebutton.addEventListener("click", function(event) {
-    cookies = cookies + click_multiplier;
-    cookies_display.textContent = cookies + " " + "Cookies";
-
     cookiebutton.classList.add("clicked");
     setTimeout(() => {
         cookiebutton.classList.remove("clicked");
@@ -424,4 +422,3 @@ cookiebutton.addEventListener("click", function(event) {
 
     spawnFallingMiniCookie(event.clientX, event.clientY);
 });
->>>>>>> Stashed changes
