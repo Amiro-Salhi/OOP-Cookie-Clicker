@@ -29,7 +29,7 @@ const CpS_display = document.getElementById("CpS");
 
 
 cookiebutton.addEventListener("click" , function() {
-        cookies = cookies + click_multiplier * total_multiplier + toppings_multiplier;
+        cookies = cookies + click_multiplier * total_multiplier * toppings_multiplier;
         cookies_display.textContent = cookies;
     }
 )
@@ -74,7 +74,7 @@ function r_i_m(incoming) {
     }
 }
 class production_unit {
-    constructor(name, price, production, display_id, button_id) {
+    constructor(name, price, production, price_display, display_id, button_id) {
         this.name = name;
         this.price = price;
         this.production = production;
@@ -84,6 +84,7 @@ class production_unit {
 
         this.display = document.getElementById(display_id);
         this.button = document.getElementById(button_id);
+        this.price_display_id = document.getElementById(price_display);
 
         if (this.button) {
             this.button.addEventListener("click", () => {
@@ -102,6 +103,13 @@ class production_unit {
             
             CpS_update();
             CpS_display.textContent = CpS;
+
+            if (this.price_display === this.price) {
+            this.price_display = 0;
+            }
+            this.price_display = this.price * (this.amount + 1);
+            this.price_display_id.textContent = this.price_display;
+            console.log(this.price_display)
 
             r_i_m(this)
 
@@ -131,7 +139,7 @@ class upgrade {
         if (cookies >= this.price && this.bought === false) {
             cookies = cookies - this.price;
             this.bought = true;
-
+            
             cookies_display.textContent = cookies;
             this.button.disabled = true;
 
@@ -148,7 +156,7 @@ class productionUpgrade extends upgrade {
     constructor(price, button_id, display_id, production_unit, multiplier) {
         super(
             price,
-            button_id
+            button_id,
         );
 
         this.production_unit = production_unit;
@@ -251,15 +259,17 @@ class cookieToppings extends upgrade {
     }
 }
 class clickUpgrade extends upgrade {
-    constructor(price, button_id, display_id, multiplier) {
+    constructor(price, button_id, display_id, price_display, multiplier) {
         super(
             price,
             button_id
         );
 
         this.multiplier = multiplier;
+        this.price_display = price;
         this.amount = 0;
         this.display = document.getElementById(display_id);
+        this.price_display_id = document.getElementById(price_display);
     }
     buy() {
         const succeeded = super.buy();
@@ -270,18 +280,24 @@ class clickUpgrade extends upgrade {
             this.button.disabled = false;
             click_multiplier = this.multiplier_total;
             this.display.textContent = this.multiplier_total;
+
+            if (this.price_display === this.price) {
+            this.price_display = 0;
+            }
+            this.price_display = this.price * (this.amount + 1);
+            this.price_display_id.textContent = this.price_display;
         }
     }
 }
 
-const grandma = new production_unit ("grandma", 10, 1, "grandmas", "buy_grandma");
-const farm = new production_unit ("farm", 50, 5, "farms", "buy_farm");
-const mine = new production_unit ("mine", 150, 15, "mines", "buy_mine");
-const factory = new production_unit ("factory", 350, 30, "factorys", "buy_factory");
-const bank = new production_unit ("bank", 550, 55, "banks", "buy_bank");
-const temple = new production_unit ("temple", 950, 90, "temples", "buy_temple");
-const wizard_tower = new production_unit ("wizard_tower", 1150, 125, "wizardtowers", "buy_wizardtower");
-const spaceship = new production_unit ("spaceship", 1850, 350, "spaceships", "buy_spaceship");
+const grandma = new production_unit ("grandma", 10, 1, "grandma_price", "grandmas", "buy_grandma");
+const farm = new production_unit ("farm", 50, 5, "farm_price", "farms", "buy_farm");
+const mine = new production_unit ("mine", 150, 15, "mine_price", "mines", "buy_mine");
+const factory = new production_unit ("factory", 350, 30, "factory_price", "factorys", "buy_factory");
+const bank = new production_unit ("bank", 550, 55, "bank_price", "banks", "buy_bank");
+const temple = new production_unit ("temple", 950, 90, "temple_price", "temples", "buy_temple");
+const wizard_tower = new production_unit ("wizard_tower", 1150, 125, "wizard_tower_price", "wizardtowers", "buy_wizardtower");
+const spaceship = new production_unit ("spaceship", 1850, 350, "spaceship_price", "spaceships", "buy_spaceship");
 
 const grandma_upgrade = new productionUpgrade(100, "buy_upgrade_grandma", grandma, 5);
 const farm_upgrade = new productionUpgrade(500, "buy_upgrade_farm", farm, 5);
@@ -291,7 +307,8 @@ const bank_upgrade = new productionUpgrade(5500, "buy_upgrade_bank", bank, 5);
 const temple_upgrade = new productionUpgrade(9500, "buy_upgrade_temple", temple, 5);
 const wizardtower_upgrade = new productionUpgrade(11500, "buy_upgrade_wizardtower", wizard_tower, 5);
 const spaceship_upgrade = new productionUpgrade(18500, "buy_upgrade_spaceship", spaceship, 5);
-const click_upgrade = new clickUpgrade(50, "buy_click_upgrade", "click_multiplier", 5);
+
+const click_upgrade = new clickUpgrade(50, "buy_click_upgrade", "click_multiplier", "click_upgrade_price", 5);
 
 const peanutCookies = new cookieTypes(150, "buy_peanut_cookies", "peanut_cookies",5);
 const almondCookies = new cookieTypes(650, "buy_almond_cookies", "almond_cookies",5);
@@ -302,7 +319,7 @@ const walnutCookies = new cookieTypes(9497, "buy_walnut_cookies", "walnut_cookie
 const doubleCookies = new cookieTypes(10475, "buy_double_cookies", "double_cookies",5);
 const whiteCookies = new cookieTypes(15650, "buy_white_cookies", "white_cookies",5);
 
-const strawberryTopping = new cookieToppings(98, "buy_s_t", "strawberry_topping", 15)
+const strawberryTopping = new cookieToppings(9800, "buy_s_t", "strawberry_topping", 15)
 const whippedCreamTopping = new cookieToppings(24840, "buy_w_c_t", "whipped_cream_topping", 35)
 const chocolateFlakesTopping = new cookieToppings(64670, "buy_c_f_t", "chocolate_flakes_topping", 75)
 const rainbowSprinklesTopping = new cookieToppings(132940, "buy_rw_s_t", "rainbow_sprinkles_topping", 155)
