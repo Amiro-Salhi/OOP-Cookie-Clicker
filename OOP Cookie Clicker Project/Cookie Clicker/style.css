@@ -1,157 +1,93 @@
-body{
+body {
     background-color: blanchedalmond;
-}
-
-h1{
     color: darkmagenta;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.Subtitle{
+h1, h2, h3, .Subtitle, .cookie, .stats, .prod, .upgrades, .cookie_types {
     color: darkmagenta;
+    transition: color 0.3s ease;
 }
 
-.upgrades p:not(.click_multiplier) {
+.upgrades p:not(.click_multiplier),
+.cookie_types p {
     display: none;
 }
 
-.cookie_types p{
-    display: none;
-}
-
-.cookie{
-    color: darkmagenta;
-}
-
-#shop_container{
+.Wat {
     display: flex;
     justify-content: space-between;
+    padding-right: 180px;
 }
 
-.stats{
-    color: darkmagenta;
-}
-
-.prod{
-    color: darkmagenta;
-    /* margin-left: 85%; */
-}
-
-.Wat{
-    display: flex;
-    justify-content: space-between;
-}
-
-#cookiecontainer{
+#cookiecontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.upgrades{
-    color: darkmagenta;
-}
-
-.cookie_types {
-    color: darkmagenta;
-}
-
-img{
-    width: 25%;
-    cursor: pointer;
-}
-
-#cookie{
-    width: 75%;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    max-width: 700px;
-}
-
-.Subtitle {
-    grid-column: 1 / -1;
-    color: darkmagenta;
-    margin-bottom: 10px;
-}
-
-.button {
-  padding: 15px 25px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: blanchedalmond;
-  background-color: darkmagenta;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px gray;
-  width: 100%;
-}
-
-.button:disabled {
-    background-color: rgb(166, 118, 166);
-    cursor: default;
-}
-
-.button:disabled:hover {
-    background-color: rgb(166, 118, 166);
-}
-
-.button:hover {
-    background-color: purple
-}
-
-.button:enabled:active {
-  background-color: darkmagenta;
-  box-shadow: 0 5px gray;
-  transform: translateY(4px);
-}
-
-body {
-    background-color: blanchedalmond;
-    overflow-x: hidden; 
     position: relative;
-    margin: 0;
 }
 
-h1 {
-    color: darkmagenta;
+#cookie {
+    width: 79%;
+    height: auto;
+    max-width: 550px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
 
-.Subtitle {
-    color: darkmagenta;
+#cookie.clicked {
+    transform: scale(0.9);
 }
 
-.cookie {
-    color: darkmagenta;
+body.hollow-knight #cookie {
+    width: 69%;
+}
+
+body.time-clock #cookie {
+    width: 69%;
+}
+
+body.son-goku #cookie {
+    width:69%;
 }
 
 #shop_container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 30px;
-    
     position: fixed;
     top: 0;
     right: -450px;
     width: 420px;
     height: 100vh;
-    background-color: burlywood; 
-    border-left: 5px solid darkmagenta; 
-    box-shadow: -5px 0 25px rgba(139, 0, 139, 0.3); 
+    background-color: burlywood;
+    border-left: 5px solid darkmagenta;
+    box-shadow: -5px 0 25px rgba(139, 0, 139, 0.3);
     padding: 70px 20px 20px 20px;
     box-sizing: border-box;
-    overflow-y: auto; 
-    transition: right 0.3s ease-in-out; 
-    z-index: 1000; 
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+    z-index: 1000;
 }
-
 
 #shop_container.active {
     right: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.Subtitle {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 
 .shop-toggle-btn {
@@ -196,98 +132,36 @@ h1 {
     color: purple;
 }
 
-.stats {
-    color: darkmagenta;
-}
-
-.prod {
-    color: darkmagenta;
-}
-
-.Wat {
-    display: flex;
-    justify-content: space-between;
-}
-
-.Wat {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 180px; 
-}
-
-#cookiecontainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.upgrades {
-    color: darkmagenta;
-}
-
-img {
-    width: 25%;
-    cursor: pointer;
-}
-
-#cookie {
-    width: 75%;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 12px;
-    width: 100%;
-}
-
-.Subtitle {
-    grid-column: 1 / -1;
-    color: darkmagenta;
-    margin-bottom: 10px;
-}
-
 .button {
-  padding: 12px 20px;
-  font-size: 18px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: blanchedalmond;
-  background-color: darkmagenta;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 6px gray;
-  width: 100%;
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: blanchedalmond;
+    background-color: darkmagenta;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px gray;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-.button:disabled {
+.button:hover {
+    background-color: purple;
+}
+
+.button:disabled,
+.button:disabled:hover {
     background-color: rgb(166, 118, 166);
     box-shadow: 0 6px rgb(130, 100, 130);
     cursor: default;
 }
 
-.button:disabled:hover {
-    background-color: rgb(166, 118, 166);
-}
-
-.button:hover {
-    background-color: purple
-}
-
 .button:enabled:active {
-  background-color: darkmagenta;
-  box-shadow: 0 3px gray;
-  transform: translateY(3px);
-}
-
-#cookie {
-    transition: transform 0.1s ease;
-}
-
-
-#cookie.clicked {
-    transform: scale(0.9);
+    background-color: darkmagenta;
+    box-shadow: 0 3px gray;
+    transform: translateY(3px);
 }
 
 .floating-text {
@@ -302,14 +176,8 @@ img {
 }
 
 @keyframes floatUp {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-80px) scale(1.3);
-    }
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.3); }
 }
 
 .button.purchase-success {
@@ -317,30 +185,10 @@ img {
 }
 
 @keyframes purchasePulse {
-    0% {
-        transform: scale(1);
-        background-color: darkmagenta;
-    }
-    50% {
-        transform: scale(1.05);
-        background-color: #b51ab5;
-    }
-    100% {
-        transform: scale(1);
-        background-color: darkmagenta;
-    }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
-
-.button.purchase-success {
-    animation: purchasePulse 0.3s ease;
-}
-
-@keyframes purchasePulse {
-    0% { transform: scale(1); background-color: darkmagenta; }
-    50% { transform: scale(1.05); background-color: #b51ab5; }
-    100% { transform: scale(1); background-color: darkmagenta; }
-}
-
 
 .purchase-popup {
     position: absolute;
@@ -354,21 +202,13 @@ img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     pointer-events: none;
     animation: popupFloat 0.7s ease-out forwards;
-    z-index: 2000; 
+    z-index: 2000;
 }
 
 @keyframes popupFloat {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(0.8);
-    }
-    50% {
-        transform: translateY(-25px) scale(1.1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-50px) scale(1);
-    }
+    0% { opacity: 1; transform: translateY(0) scale(0.8); }
+    50% { transform: translateY(-25px) scale(1.1); }
+    100% { opacity: 0; transform: translateY(-50px) scale(1); }
 }
 
 .falling-cookie {
@@ -383,34 +223,128 @@ img {
 }
 
 @keyframes cookieFall {
-    0% {
-        transform: translate(-50%, -50%) scale(0.6);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, 45px) scale(0.3);
-        opacity: 0;
-    }
+    0% { transform: translate(-50%, -50%) scale(0.6); opacity: 1; }
+    100% { transform: translate(-50%, 45px) scale(0.3); opacity: 0; }
 }
-
-#cookie {
-    width: 79%;
-    height:79%;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-body.hollow-knight #cookie {
-    width: 35%;
-}
-
 
 body.hollow-knight {
-    background-color: #0b0f19; 
-    color: #c7d5e0;            
+    background-color: #0b0f19;
+    color: #c7d5e0;
+}
+
+body.hollow-knight h1,
+body.hollow-knight h2,
+body.hollow-knight h3,
+body.hollow-knight p,
+body.hollow-knight span,
+body.hollow-knight .Subtitle,
+body.hollow-knight .cookie,
+body.hollow-knight .stats,
+body.hollow-knight .prod,
+body.hollow-knight .upgrades {
+    color: #c7d5e0;
 }
 
 body.hollow-knight #shop_container {
-    background-color: #0b0f19;
-    color: #c7d5e0;
+    background-color: #141b2d;
+    border-left-color: #4f6d8a;
+}
+
+body.hollow-knight .button,
+body.hollow-knight .shop-toggle-btn {
+    background-color: #2a3b55;
+    color: #ffffff;
+    box-shadow: 0 5px #05080f;
+}
+
+body.hollow-knight .button:hover,
+body.hollow-knight .shop-toggle-btn:hover {
+    background-color: #3e567a;
+}
+
+body.hollow-knight .floating-text {
+    color: #ffffff;
+    text-shadow: 1px 1px 4px #0b0f19;
+}
+
+body.time-clock {
+    background-color: #3e2723;
+    color: #ffd54f;           
+}
+
+body.time-clock h1,
+body.time-clock h2,
+body.time-clock h3,
+body.time-clock p,
+body.time-clock span,
+body.time-clock .Subtitle,
+body.time-clock .cookie,
+body.time-clock .stats,
+body.time-clock .prod,
+body.time-clock .upgrades {
+    color: #ffd54f;
+}
+
+body.time-clock #shop_container {
+    background-color: #4e342e;
+    border-left-color: #ffb300;
+}
+
+body.time-clock .button,
+body.time-clock .shop-toggle-btn {
+    background-color: #ffb300;
+    color: #261612;
+    font-weight: bold;
+    box-shadow: 0 5px #1b0f0c;
+}
+
+body.time-clock .button:hover,
+body.time-clock .shop-toggle-btn:hover {
+    background-color: #ffca28;
+}
+
+body.time-clock .floating-text {
+    color: #ffd54f;
+    text-shadow: 1px 1px 4px #261612;
+}
+
+body.son-goku {
+    background-color: #ea580c; /* Kamehameha Oranje */
+    color: #fef08a;            /* Super Saiyan Geel */
+}
+
+body.son-goku h1,
+body.son-goku h2,
+body.son-goku h3,
+body.son-goku p,
+body.son-goku span,
+body.son-goku .Subtitle,
+body.son-goku .cookie,
+body.son-goku .stats,
+body.son-goku .prod,
+body.son-goku .upgrades {
+    color: #fef08a;
+}
+
+body.son-goku #shop_container {
+    background-color: #1e3a8a;
+    border-left-color: #facc15;
+}
+
+body.son-goku .button,
+body.son-goku .shop-toggle-btn {
+    background-color: #facc15;
+    color: #1e3a8a;
+    font-weight: bold;
+    box-shadow: 0 5px #0f172a;
+}
+
+body.son-goku .button:hover,
+body.son-goku .shop-toggle-btn:hover {
+    background-color: #fde047;
+}
+
+body.son-goku .floating-text {
+    color: #fef08a;
+    text-shadow: 1px 1px 4px #1e3a8a;
 }
